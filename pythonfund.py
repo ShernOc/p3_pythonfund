@@ -1,97 +1,104 @@
-# Tasks:
-# Function: add_numbers
-#A function named add_numbers that takes two parameters num1 and num2, and returns the sum of the two numbers.
-
+# Function add_numbers that adds two numbers 
 def add_numbers(num1, num2 ):
     return num1 + num2
 
 total=add_numbers(num1=3,num2=2)
 print(total)
 
-# Function: is_even (2 points)
-# function named is_even that takes a single parameter number and returns True if the number is even, and False otherwise.
+# Function: is_even that evaluates if the number is even or not. 
 
 def is_even(number):
     if number % 2 ==0:
         print(True)
     elif number % 2 !=0:
          print(False)
-
 is_even(3)
 
-# Function: reverse_string
-# function named reverse_string that takes a string text as input and returns the reversed version of that string.
+# function prompts the user to input a string which is then converted to string uppercase .upper(), and reversed using slice notation  [::-1] 
+
 def reverse_string():
     #using the slicing string[::-1]
     string=(input("What is your name?")).upper()
     return string[::-1]
-
 result=reverse_string()
 print(result)
 
-# # Function: count_vowels (2 points)
-# # Python function named count_vowels that takes a string text as input and returns the count of vowels (a, e, i, o, u) in the string. Ignore case sensitivity.
-# def count_vowels():
-#     name= str(input("Where are you from? "))
-#     count =0
-#     # using the for loop
-#     for vowel in name:
-#         if vowel in count:
-#             count[vowel] +=1
-#     return count
-#     if name.upper() in ("a","e","i","o","u"):
-#         return name
+# functions finds the number of vowels in a string. 
+def count_vowels(text):
+    # string containing the vowels
+    vowels= "aeiou"
+    # converts string to lowercase 
+    text=text.lower()
+    # initialize counter to 0: as the number of vowels
+    count =0
+    # loops through each character (char) in the text and checks each character has a vowel listed in vowels
+    for char in text:
+        if char in vowels:
+           # if a vowel is found it increases the count by 1.
+           count +=1
+    # return number count of vowels found in the text. 
+    return count
 
-# results = count_vowels()
+print(count_vowels("sherlyne"))
 
-# print(results)
-
-    
-# # Function: calculate_factorial (2 points)
-# # Write a Python function named calculate_factorial that takes a non-negative integer n as input and returns the factorial of that number. The factorial of a non-negative integer n is the product of all positive integers less than or equal to n.
-
-
+#Function that takes a non-negative integer n as input and returns the factorial of that number.
 def calculate_factorial(n):
-    n=int(input("Choose any number"))
-    if n ==0:
+    if n==0 or n==1:
         return 1
     else:
-        return n *(n<=1)
+        # shows the factorial calculation (n*(n-1))
+        return n * calculate_factorial(n-1)
+result=calculate_factorial(4)
+print(result) 
 
-calculate_factorial(4)
+#Decorator function that takes a function and returns a function. 
+# apply_decorator takes a (function) as an argument
+def apply_decorator(func):
+    # decorator_fun calls the (func) and prints/ and acts as a wrapper
+    def decorator_func():
+        func()
+        print("Decorator Applied")
+    return decorator_func
+def get_func(): 
+        print("New function being called ")
 
+ #applies and calls the decorator to get_func which gets the appy_decorator
 
-# # Function: apply_decorator (1 point)
-# # Write a Python function named apply_decorator that takes a function func as input and applies a decorator named decorator_func. The decorator should simply print "Decorator Applied" before calling the original function.
+get_func=apply_decorator(get_func)
+# provides the output of new function and appy_decorator function. 
+get_func()
 
-# # Sequences: Sort List of Tuples (1 point)
-# # Given a list of tuples where each tuple contains a name and an age, write a Python function named sort_by_age that sorts the list of tuples by age in ascending order.
+#Tuples: created a list of tuples and sorted the list by age in ascending order. 
+name_age_tuple = ([("sherlyne", 10), ("making", 24), ("John", 56),("Mary", 19)])
+def sort_by_age(name_age_tuple):
+    #used the sorted*() with  key: labda to sort the list based on the second element (age)of x[1]; [1] is the index (56 in john,56)
+    return sorted(name_age_tuple,key=lambda x:x[1])
 
-# # Sets and Dictionaries: Merge Dictionaries (1 point)
-
-# # Write a Python function named merge_dicts that takes two dictionaries as input and merges them into a single dictionary. If there are any common keys, their values should be summed up.
-# # Object-Oriented Programming: Class Creation (2 points)
-
+print(sort_by_age(name_age_tuple))
+   
+# Created two dictionaries 
 students= {
   "MoringaStudents": ["Sherlyne", "Mary", "John", "Hilda"],
   "Total": 3 }
 cities= {
     "Kenya Cities": ["Nairobi", "Mombasa", "Nakuru", "Mombasa"]}
+
+# function merges the students and cities dictionaries 
 def merg_dicts(students,cities):
-  #the different dictionaries of students and cities in kenya 
+  #for loop that iterates over the key in cities, and if the key exist in students it extends the list, if not a key value from cities is added to students.
   for key in cities.keys():
     if key in students:
       students[key].extend(cities[key])
     else:
       students[key]=cities[key]
+      # returns a new student dictionary with cities  
   return students
   
 studentsCities= merg_dicts(students,cities)
+# returns the merged dictionaries. 
 print(studentsCities)
   
-# , # A python class named Car with the attributes: make, model, year. 
-# # the function Implements a method named display_info that prints out the car's information. 
-
+# OOP: Class of Car  
 class Car: 
     def __init__(self,make,model,year):
         self.make =make 
@@ -100,8 +107,8 @@ class Car:
  # a method named display_info 
 
     def display_info(self):
-       print(f"Car's information:{self.make},{self.model}, {self.year}")
+       print(f"Car's information:{self.make},{self.model},{self.year}")
 
-# #The instance = Toyota 
-# Toyota=Car("Toyota","Camri",2024)
-# print(Toyota.display_info())
+# The instance = Toyota 
+toyota=Car("Toyota","Camri",2024)
+toyota.display_info()
